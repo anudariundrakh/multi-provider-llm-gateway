@@ -1,21 +1,3 @@
-# Multi-Provider LLM Gateway
-
-A Python application that provides a unified interface for interacting with multiple large language model providers.
-
-The project currently supports:
-
-- OpenAI
-- Anthropic
-- Real-time streaming responses
-- Token usage tracking
-- Time-to-first-token (TTFT)
-- Tokens per second
-- Request latency
-- Estimated API cost
-- Demo mode for testing without paid API calls
-
----
-
 ## Project Architecture
 
 ```mermaid
@@ -28,3 +10,23 @@ flowchart LR
     E --> C
     C --> B
     B --> F[Telemetry Display]
+```
+
+## Pricing
+
+The telemetry engine calculates estimated request cost using the following rates.
+
+| Model | Input Cost / 1M Tokens | Output Cost / 1M Tokens |
+|---|---:|---:|
+| gpt-4o-mini | $0.15 | $0.60 |
+| gpt-4o | $2.50 | $10.00 |
+| claude-3-5-haiku | $0.80 | $4.00 |
+| claude-3-5-sonnet | $3.00 | $15.00 |
+
+Pricing values are stored in:
+
+```text
+src/pricing.py
+```
+
+Request cost is calculated separately for input and output tokens and rounded to six decimal places.
