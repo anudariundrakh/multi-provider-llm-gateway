@@ -1,8 +1,9 @@
-import pytest
+import os
 
 from src.gateway import (
     AuthenticationError,
     GatewayProviderError,
+    UnifiedLLMGateway,
 )
 
 
@@ -30,3 +31,25 @@ def test_gateway_error_is_exception():
     )
 
     assert isinstance(error, Exception)
+
+
+def test_missing_openai_key_creates_no_client(monkeypatch):
+    monkeypatch.delenv(
+        "OPENAI_API_KEY",
+        raising=False,
+    )
+
+    gateway = UnifiedLLMGateway()
+
+    assert gateway.openai_client is None
+
+
+def test_missing_anthropic_key_creates_no_client(monkeypatch):
+    monkeypatch.delenv(
+        "ANTHROPIC_API_KEY",
+        raising=False,
+    )
+
+    gateway = UnifiedLLMGateway()
+
+    assert gateway.anthropic_client is None
