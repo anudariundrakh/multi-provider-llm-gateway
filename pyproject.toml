@@ -1,0 +1,23 @@
+[project]
+name = "multi-provider-llm-gateway"
+version = "0.1.0"
+description = "A multi-provider async LLM gateway with real-time telemetry."
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    "openai",
+    "anthropic",
+    "pydantic",
+    "tiktoken",
+    "fastapi",
+    "uvicorn",
+    "python-dotenv",
+    "pytest",
+    "pytest-asyncio",
+    "streamlit",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
