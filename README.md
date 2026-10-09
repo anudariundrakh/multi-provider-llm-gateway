@@ -174,8 +174,8 @@ The telemetry engine calculates estimated request cost using the following rates
 |---|---:|---:|
 | gpt-4o-mini | $0.15 | $0.60 |
 | gpt-4o | $2.50 | $10.00 |
-| claude-3-5-haiku | $0.80 | $4.00 |
-| claude-3-5-sonnet | $3.00 | $15.00 |
+| claude-haiku-4-5-20251001 | $1.00 | $5.00 |
+| claude-sonnet-5-5 | $2.00 | $10.00 |
 
 Pricing values are stored in:
 

@@ -47,9 +47,9 @@ else:
     model = st.selectbox(
         "Choose Model",
         [
-            "claude-3-5-haiku",
-            "claude-3-5-sonnet",
-        ],
+    "claude-haiku-4-5-20251001",
+    "claude-sonnet-5-5",
+],
     )
 
 

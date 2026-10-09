@@ -197,7 +197,6 @@ class UnifiedLLMGateway:
             async with self.anthropic_client.messages.stream(
                 model=model,
                 max_tokens=1024,
-                temperature=temperature,
                 messages=[
                     {
                         "role": "user",

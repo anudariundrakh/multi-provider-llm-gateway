@@ -7,13 +7,13 @@ PRICING = {
         "input": 2.50,
         "output": 10.00,
     },
-    "claude-3-5-haiku": {
-        "input": 0.80,
-        "output": 4.00,
+    "claude-haiku-4-5-20251001": {
+        "input": 1.00,
+        "output": 5.00,
     },
-    "claude-3-5-sonnet": {
-        "input": 3.00,
-        "output": 15.00,
+    "claude-sonnet-5-5": {
+        "input": 2.00,
+        "output": 10.00,
     },
 }
 

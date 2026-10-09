@@ -273,3 +273,64 @@ The most important issues identified were:
 5. Missing API keys should be handled with clear custom errors.
 
 These changes improved the reliability, security, and correctness of the multi-provider gateway.
+
+## Audit Finding 6: Unsupported Anthropic Streaming Parameter
+
+### Problem
+
+The initial Anthropic streaming implementation passed the `temperature` argument directly into:
+
+```python
+self.anthropic_client.messages.stream(...)
+```
+
+During real testing, this caused the application to fail with:
+
+```text
+TypeError: AsyncMessages.stream() got an unexpected keyword argument 'temperature'
+```
+
+This issue was hidden at first because the gateway intentionally wrapped provider errors with the generic message:
+
+```text
+Anthropic request failed.
+```
+
+### Before
+
+```python
+async with self.anthropic_client.messages.stream(
+    model=model,
+    max_tokens=1024,
+    temperature=temperature,
+    messages=[
+        {
+            "role": "user",
+            "content": prompt,
+        }
+    ],
+) as stream:
+```
+
+### Fix
+
+The unsupported parameter was removed:
+
+```python
+async with self.anthropic_client.messages.stream(
+    model=model,
+    max_tokens=1024,
+    messages=[
+        {
+            "role": "user",
+            "content": prompt,
+        }
+    ],
+) as stream:
+```
+
+### Result
+
+Anthropic streaming began working successfully with the configured Claude model.
+
+This was verified using a real Anthropic API request that returned streamed text and usage metadata.
